@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product Affordability Calculator</title>
+</head>
+<body>
+	<h1>Product Affordability Calculator</h1>
+	<form>
+		<label for="income">Monthly Income:</label>
+		<input type="number" id="income" name="income" required><br><br>
+		
+		<label for="expenses">Monthly Expenses:</label>
+		<input type="number" id="expenses" name="expenses" required><br><br>
+		
+		<label for="product-price">Product Price:</label>
+		<input type="number" id="product-price" name="product-price" required><br><br>
+		
+		<button type="button" onclick="calculate()">Calculate</button>
+	</form>
+	
+	<p id="result"></p>
+	
+	<script>
+		function calculate() {
+			// Get the values from the input fields
+			let income = document.getElementById("income").value;
+			let expenses = document.getElementById("expenses").value;
+			let productPrice = document.getElementById("product-price").value;
+			
+			// Calculate the maximum amount the user can spend on the product each month
+			let availableBudget = income - expenses;
+			let monthlyPayment = productPrice / 12;
+			
+			// Check if the user can afford the product
+			if (monthlyPayment <= availableBudget) {
+				document.getElementById("result").innerHTML = "You can afford the product! You should pay $" + monthlyPayment.toFixed(2) + " per month towards buying it.";
+			} else {
+				document.getElementById("result").innerHTML = "You cannot afford the product. You need to reduce your expenses or increase your income.";
+			}
+		}
+	</script>
+</body>
+</html>
